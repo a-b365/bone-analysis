@@ -1,0 +1,8 @@
+# scripts
+*.ps1
+
+# virtual environment
+.venv
+
+# gz files
+*.gz
