@@ -10,7 +10,7 @@ from skimage import measure
 from scipy.ndimage import distance_transform_edt
 
 # Local import
-from plots import show_mask, show_contours, show_distance_transform
+# from plots import show_mask, show_contours, show_distance_transform
 
 def calculate_contours(mask):
     # Find contours in the segmented slice
@@ -86,7 +86,7 @@ if __name__ == "__main__":
 
     # # Calculate contours for slice number 110
     # contours = calculate_contours(expanded_mask_1[110]) + calculate_contours(mask_data[110])
-    # show_contours(expanded_mask_1[110], contours)   # Visualize the contour
+    # show_contours(expanded_mask_1[110], contours)   # Visualize the congittour
     # show_distance_transform(inside) # Visualize the distance map
 
     randomized_mask_1, inside, outside = random_mask(mask_data, spacing, expansion=2.0, randomness_level=0.6, seed=42)

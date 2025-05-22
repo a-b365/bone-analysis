@@ -1,6 +1,16 @@
 from mayavi import mlab
 import numpy as np
 
+def visualize_segments(labels):
+
+    tibia = (labels == 2).astype(np.float32)
+    femur = (labels == 1).astype(np.float32)
+
+    mlab.contour3d(tibia, color=(0, 1, 0))
+    mlab.contour3d(femur, color=(1, 0, 0))
+    mlab.title("Segmentation", size=1)
+    mlab.show()
+
 def visualize_tibia_landmarks(mask_xyz, medial_xyz, lateral_xyz):
     """
     Visualize tibia 3D mask with medial and lateral landmarks using Mayavi.
