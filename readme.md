@@ -36,7 +36,7 @@ This project applies classical image processing techniques to knee CT scans, foc
 ## 📁 Project Structure
 
 ```
-medical-image-processing/
+bone_analysis/
 ├── utils/
 │   ├── segmentation.py           # Segmentation & 3D rendering
 │   ├── contour_adjustment.py     # Expansion and randomization
@@ -47,12 +47,14 @@ medical-image-processing/
 ├── results/
 │   ├── *.nii                     # Processed segmentations
 │   ├── coordinates.txt           # Landmark coordinates
-│   └── images/                   # Slice & volume visualizations
+│   └── description.txt           # Includes the description of the files
+├── images/
+│   └── *.png                     # Example rendered visualizations
+├── docs/
+│   └── report.pdf                # Methodology and technical documentation
 ├── requirements.txt              # Python dependencies
 ├── env.ps1                       # Windows setup script
-└── README.md                     # This file
-```
-
+└── README.md                     # Project overview and instructions
 ---
 
 ## 🚀 Getting Started
@@ -153,12 +155,6 @@ def visualize_segments(labels):
 3. Commit your changes
 4. Push to GitHub
 5. Open a Pull Request
-
----
-
-## 📝 License
-
-Licensed under the MIT License. See `LICENSE` for details.
 
 ---
 
