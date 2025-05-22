@@ -1,0 +1,51 @@
+PROJECT DESCRIPTION: Medical Image Processing for Knee CT Scan Analysis
+
+OVERVIEW:
+This project implements comprehensive image processing techniques for analyzing knee region CT scans, focusing on femur and tibia bone segmentation, contour manipulation, and anatomical landmark detection.
+
+RESULTS FOLDER CONTENTS:
+- 6 .nii files containing processed medical imaging data
+- Original segmentation masks (femur and tibia separated)
+- Expanded masks: 2mm and 4mm expansion variants
+- Randomized masks: 20% and 80% randomness levels
+- All masks preserve original metadata for clinical compatibility
+
+COORDINATE DATA:
+- coordinates.txt: Contains medial and lateral landmark coordinates
+- Structured format with proper headers for result verification
+- Enables accuracy assessment of landmark detection techniques
+
+VISUALIZATION OUTPUTS:
+- images/ folder: Isometric view renderings of all masks in PNG format
+- Interactive 3D visualizations available through provided functions
+- Landmark images can be generated using integrated viewing functions
+
+TECHNICAL IMPLEMENTATION:
+- utils/ folder: Four specialized modules for core functionality
+  1. Mask creation and interactive 3D segmentation viewing
+  2. Contour expansion, randomization, and visualization
+  3. Landmark detection with medial/lateral point identification
+  4. Comprehensive plotting functions for distance maps, contours, masks, and segments
+
+INTERACTIVE DEVELOPMENT:
+- notebooks/ folder: Jupyter notebook with detailed implementation examples
+- Visual interactive environment for rapid prototyping
+- Comprehensive dataset visualizations and processing demonstrations
+- Quick-start scripts for immediate experimentation
+
+SETUP REQUIREMENTS:
+- PowerShell script execution required for initial setup
+- requirements.txt provides complete package dependencies with versions
+- All necessary libraries must be installed before project execution
+
+CORE TECHNOLOGIES:
+- scikit-image, scipy, opencv for image processing
+- matplotlib and mayavi for 2D/3D visualization
+- Medical imaging format support (.nii files)
+- Cross-platform compatibility
+
+APPLICATION DOMAINS:
+- Medical image analysis and research
+- Surgical planning and preoperative assessment
+- Anatomical morphology studies
+- Clinical decision support systems

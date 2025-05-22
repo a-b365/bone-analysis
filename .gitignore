@@ -1,5 +1,5 @@
-# scripts
-*.ps1
-
 # virtual environment
 .venv
+
+# __pycache__ folder
+__pycache__
