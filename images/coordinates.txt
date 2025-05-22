@@ -1,0 +1,6 @@
+Mask, Medial [X, Y, Z], Lateral [X, Y, Z]
+Original Mask, [343, 277, 97], [406, 287, 96]
+2mm Expanded Mask, [341, 273, 97], [408, 263, 95]
+4mm Expanded Mask, [343, 275, 97], [399, 283, 96]
+Randomized Mask 1, [341, 274, 97], [414, 290, 96]
+Randomized Mask 2  [338, 278, 97], [418, 274, 97]

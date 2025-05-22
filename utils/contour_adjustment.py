@@ -10,11 +10,11 @@ from skimage import measure
 from scipy.ndimage import distance_transform_edt
 
 # Local import
-# from plots import show_mask, show_contours, show_distance_transform
+from plots import show_contours, show_distance_transform, visualize_expansion, visualize_randomness
 
 def calculate_contours(mask):
     # Find contours in the segmented slice
-    contours = measure.find_contours(mask, 0.8)
+    contours = measure.find_contours(mask)
     return contours
 
 def expand_mask(mask_data, spacing, expansion=2.0):
@@ -32,7 +32,7 @@ def expand_mask(mask_data, spacing, expansion=2.0):
         # Threshold at desired expansion distance
         expanded_mask[:, :, i] = (dist_map <= expansion) | mask_data[:, :, i].astype(bool)
     
-    return expanded_mask, dist_map
+    return expanded_mask
 
 def random_mask(mask_data, spacing, expansion=2.0, randomness_level=0.5, seed=None):
 
@@ -67,36 +67,25 @@ def random_mask(mask_data, spacing, expansion=2.0, randomness_level=0.5, seed=No
             original_mask[tuple(shell_indices[idx])] = True
         random_mask[:, :, i] = original_mask
         
-    return random_mask, inside, outside
+    return random_mask
 
 
 if __name__ == "__main__":
 
     mask_volume = nib.load(os.environ["MASK_DATA_PATH"])
     mask_data = mask_volume.get_fdata()
-    # mask_data = mask_data.transpose(2, 1, 0)
     spacing = mask_volume.header.get_zooms()
 
-    expanded_mask_1, inside = expand_mask(mask_data, spacing, expansion=2.0)
-    nib.save(nib.Nifti1Image(expanded_mask_1, affine=mask_volume.affine), os.environ["STORE_LOCATION"]+"left_knee_expanded_mask_1.nii.gz")
-    
-    # In the same way save the second expanded mask to .nii format 
-    expanded_mask_2, inside = expand_mask(mask_data, spacing, expansion=4.0)
-    nib.save(nib.Nifti1Image(expanded_mask_2, affine=mask_volume.affine), os.environ["STORE_LOCATION"] + "left_knee_expanded_mask_2.nii.gz")
+    # expanded_mask_1 = expand_mask(mask_data, spacing, expansion=2.0)
+    # visualize_expansion(expanded_mask_1, expansion=2.0)
 
-    # # Calculate contours for slice number 110
-    # contours = calculate_contours(expanded_mask_1[110]) + calculate_contours(mask_data[110])
-    # show_contours(expanded_mask_1[110], contours)   # Visualize the congittour
-    # show_distance_transform(inside) # Visualize the distance map
+    # expanded_mask_2 = expand_mask(mask_data, spacing, expansion=4.0)
+    # visualize_expansion(expanded_mask_2, expansion=4.0)
 
-    randomized_mask_1, inside, outside = random_mask(mask_data, spacing, expansion=2.0, randomness_level=0.6, seed=42)
-    nib.save(nib.Nifti1Image(randomized_mask_1, affine=mask_volume.affine), os.environ["STORE_LOCATION"]+"left_knee_randomized_mask_1.nii.gz")
-    # contours = calculate_contours(randomized_mask_1[0]) + calculate_contours(mask_data[0])
-    # show_contours(randomized_mask_1[0], contours)
-    # show_distance_transform(inside)
-    # show_distance_transform(outside)
-    randomized_mask_2, inside, outside = random_mask(mask_data, spacing, expansion=4.0, randomness_level=0.4, seed=50)
-    nib.save(nib.Nifti1Image(randomized_mask_2, affine=mask_volume.affine), os.environ["STORE_LOCATION"]+"left_knee_randomized_mask_2.nii.gz")
+    randomized_mask_1 = random_mask(mask_data, spacing, expansion=2.0, randomness_level=1.0, seed=42)
+    visualize_randomness(randomized_mask_1, expansion=2.0)
 
+    randomized_mask_2 = random_mask(mask_data, spacing, expansion=2.0, randomness_level=0.8, seed=50)
+    visualize_randomness(randomized_mask_2, expansion=4.0)
 
     

@@ -1,5 +1,28 @@
 from mayavi import mlab
 import numpy as np
+import matplotlib.pyplot as plt
+
+def show_contours(mask, contours):
+    for contour in contours:
+        plt.plot(contour[:, 1], contour[:, 0])
+    plt.imshow(mask, cmap="gray")
+    plt.show()
+
+def show_distance_transform(dist_matrix):
+    plt.imshow(dist_matrix, cmap="hot")
+    plt.show()
+
+def visualize_expansion(expanded_mask, expansion):
+    
+    mlab.contour3d(expanded_mask, color=(1, 1, 1))
+    mlab.title(f"{expansion}mm Expanded Mask")
+    mlab.show()
+
+def visualize_randomness(expanded_mask, expansion):
+    
+    mlab.contour3d(expanded_mask, color=(1, 1, 1))
+    mlab.title(f"{expansion}mm Randomized Mask")
+    mlab.show()
 
 def visualize_segments(labels):
 
@@ -11,42 +34,10 @@ def visualize_segments(labels):
     mlab.title("Segmentation", size=1)
     mlab.show()
 
-def visualize_tibia_landmarks(mask_xyz, medial_xyz, lateral_xyz):
-    """
-    Visualize tibia 3D mask with medial and lateral landmarks using Mayavi.
 
-    Args:
-        mask_xyz (ndarray): 3D binary mask in [x, y, z] format.
-        medial_xyz (list or ndarray): [x, y, z] of medial point.
-        lateral_xyz (list or ndarray): [x, y, z] of lateral point.
-    """
+def show_landmarks(volume, medial, lateral):
 
-    # Get surface coordinates from the mask
-    verts = np.argwhere(mask_xyz)
-
-    x, y, z = verts[:, 0], verts[:, 1], verts[:, 2]
-
-    # Plot tibia surface
-    mlab.figure(size=(800, 800), bgcolor=(1, 1, 1))
-    mlab.points3d(x, y, z,
-                  mode='point',
-                  color=(0.6, 0.6, 0.6),
-                  opacity=0.3,
-                  scale_factor=1)
-
-    # Plot medial point (red)
-    mlab.points3d(medial_xyz[0], medial_xyz[1], medial_xyz[2],
-                  color=(1, 0, 0), scale_factor=4, resolution=20)
-    mlab.text3d(medial_xyz[0], medial_xyz[1], medial_xyz[2], 'Medial',
-                scale=2, color=(1, 0, 0))
-
-    # Plot lateral point (blue)
-    mlab.points3d(lateral_xyz[0], lateral_xyz[1], lateral_xyz[2],
-                  color=(0, 0, 1), scale_factor=4, resolution=20)
-    mlab.text3d(lateral_xyz[0], lateral_xyz[1], lateral_xyz[2], 'Lateral',
-                scale=2, color=(0, 0, 1))
-
-    # Finalize
-    mlab.orientation_axes()
-    mlab.view(azimuth=180, elevation=90, distance='auto')
+    mlab.contour3d(tibia_3d, color=(1, 1, 1), opacity=0.3)
+    mlab.points3d(medial[0], medial[1], medial[2], color=(1, 0, 0), scale_factor=4, resolution=20)
+    mlab.points3d(lateral[0], lateral[1], lateral[2], color=(0, 0, 1), scale_factor=4, resolution=20)
     mlab.show()
