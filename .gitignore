@@ -3,6 +3,3 @@
 
 # virtual environment
 .venv
-
-# gz files
-*.gz
