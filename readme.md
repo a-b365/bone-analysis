@@ -159,8 +159,8 @@ def visualize_segments(labels: np.ndarray) -> None:
 - **Segmentation Masks**: Femur/tibia separated
 - **Expanded Masks**: 2mm & 4mm expansion
 - **Randomized Masks**: 20% & 80% variation
-- **Landmarks**: Medial/lateral coordinates in `coordinates.txt`
-- **Visuals**: 2D slices and 3D renderings (in `results/images/`)
+- **Landmarks**: Medial/lateral coordinates in `landmark_coordinates.txt`
+- **Visuals**: 3D renderings (in `images/`)
 
 ---
 
@@ -187,8 +187,7 @@ def visualize_segments(labels: np.ndarray) -> None:
 ## Usage
 
 - Run the desired Python module directly from the command line.
-- Upload a document image and click **Process**.
-- The app will display one output at a time:
+- This will display one output at a time:
   - Segmentation: Generates masks for femur and tibia.
   - Contour Expansion: Produces expanded and randomized contours of the masks.
   - Landmark Detection: Identifies medial and lateral tibial landmarks.
