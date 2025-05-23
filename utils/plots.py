@@ -127,8 +127,8 @@ def visualize_segments(labels: np.ndarray) -> None:
     Args:
         labels (np.ndarray): 3D integer array where different values represent
                            different segmented structures:
-                           - Label 1: Femur (displayed in red)
-                           - Label 2: Tibia (displayed in green)
+                           - Label 1: Tibia (displayed in green)
+                           - Label 2: Femur (displayed in red)
     
     Returns:
         None: Displays the 3D plot using mlab.show()

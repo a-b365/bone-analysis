@@ -73,7 +73,7 @@ bone_analysis/
 
     ```bash
     git clone https://github.com/a-b365/bone-analysis.git
-    cd bone_analysis
+    cd bone-analysis
     ```
 
 2. Run the powershell script to add the environment variables:
@@ -121,17 +121,37 @@ medial_landmark, lateral_landmark = find_landmarks(tibia_3d, spacing)
 
 # Visualize 3D
 from mayavi import mlab
-def visualize_segments(labels):
+def visualize_segments(labels: np.ndarray) -> None:
+    """
+    Visualize 3D segmentation results showing different anatomical structures.
     
-    tibia = (labels == 2).astype(np.float32)
-    femur = (labels == 1).astype(np.float32)
-
-    mlab.contour3d(tibia, color=(0, 1, 0))
-    mlab.contour3d(femur, color=(1, 0, 0))
-    mlab.title("Segmentation", size=1)
+    This function displays segmented anatomical structures (tibia and femur)
+    in different colors using 3D contour visualization.
+    
+    Args:
+        labels (np.ndarray): 3D integer array where different values represent
+                           different segmented structures:
+                           - Label 1: Tibia (displayed in green)
+                           - Label 2: Femur (displayed in red)
+    
+    Returns:
+        None: Displays the 3D plot using mlab.show()
+    
+    Example:
+        >>> labels = np.random.randint(0, 3, (50, 50, 50))
+        >>> visualize_segments(labels)
+    """
+    # Extract individual structures from labeled volume
+    tibia = (labels == 1).astype(np.float32)
+    femur = (labels == 2).astype(np.float32)
+    
+    # Visualize structures in different colors
+    mlab.contour3d(tibia, color=(0, 1, 0))  # Green for tibia
+    mlab.contour3d(femur, color=(1, 0, 0))  # Red for femur
+    mlab.title("Segmentation Results", size=1)
     mlab.show()
-```
 
+```
 ---
 
 ## 📊 Outputs

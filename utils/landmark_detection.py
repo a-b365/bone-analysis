@@ -240,7 +240,7 @@ def main() -> None:
         
         # Save results
         output_path = os.environ["STORE_LOCATION"] + "landmarks.txt"
-        save_landmarks(medial, lateral, output_path, spacing)
+        # save_landmarks(medial, lateral, output_path, spacing)
         
         # Visualize results (optional)
         show_landmarks(tibia_3d, medial, lateral)
