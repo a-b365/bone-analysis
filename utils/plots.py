@@ -37,7 +37,7 @@ def visualize_segments(labels):
 
 def show_landmarks(volume, medial, lateral):
 
-    mlab.contour3d(tibia_3d, color=(1, 1, 1), opacity=0.3)
+    mlab.contour3d(volume, color=(1, 1, 1), opacity=0.3)
     mlab.points3d(medial[0], medial[1], medial[2], color=(1, 0, 0), scale_factor=4, resolution=20)
     mlab.points3d(lateral[0], lateral[1], lateral[2], color=(0, 0, 1), scale_factor=4, resolution=20)
     mlab.show()

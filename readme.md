@@ -1,24 +1,24 @@
 
-# 🦴 Medical Image Processing: Knee CT Scan Analysis
+# Medical Image Processing: Knee CT Scan Analysis
 
-## 🏥 Overview
+## Overview
 
-This project applies classical image processing techniques to knee CT scans, focusing on bone segmentation, contour manipulation, and landmark detection. Designed for those who are new to medical imaging, it extracts critical anatomical insights from medical images, specifically targeting femur and tibia structures.
+This project applies classical image processing techniques to knee CT scans, focusing on bone segmentation, contour manipulation, and landmark detection. It extracts critical anatomical insights from medical images, specifically targeting femur and tibia structures.
 
 ---
 
-## 🎯 Features
+## Features
 
 - **Automated Bone Segmentation** – Isolate femur and tibia from axial CT slices  
 - **Contour Expansion** – Expand bone masks (e.g., +2mm, +4mm) using distance transform  
-- **Mask Randomization** – Introduce 20% and 80% controlled variations  
+- **Mask Randomization** – Introduce controlled randomness (e.g. 20%, 80%)
 - **Landmark Detection** – Extract medial and lateral tibial plateau points  
 - **3D Visualization** – Render segmentation results with interactive tools  
 - **Medical File Support** – Native handling of `.nii` (NIfTI) imaging format
 
 ---
 
-## 🔬 Technical Approach
+## Technical Approach
 
 **Core Methods:**
 - Watershed segmentation (2D slice-wise)
@@ -33,7 +33,7 @@ This project applies classical image processing techniques to knee CT scans, foc
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 bone_analysis/
@@ -46,49 +46,64 @@ bone_analysis/
 │   └── notebook.ipynb            # Interactive Jupyter notebook
 ├── results/
 │   ├── *.nii                     # Processed segmentations
-│   ├── coordinates.txt           # Landmark coordinates
-│   └── description.txt           # Includes the description of the files
+│   ├── landmark_coordinates.txt  # Landmark coordinates
+│   └── codebase_description.txt  # Includes the description of the files
 ├── images/
 │   └── *.png                     # Example rendered visualizations
 ├── docs/
 │   └── report.pdf                # Methodology and technical documentation
 ├── requirements.txt              # Python dependencies
 ├── env.ps1                       # Windows setup script
-└── README.md                     # Project overview and instructions
+└── readme.md                     # Project overview and instructions
+```
+
 ---
 
-## 🚀 Getting Started
+## 🚀 Setup Instructions
 
-### 🔧 Requirements
+### 🔧 Prerequisites
 
 - Python 3.8+
-- Git
+- Git (to clone the repo)
 - PowerShell (for Windows users)
 
 ### 💻 Installation
 
-Clone and set up the environment:
+1. Clone the repository
 
-```bash
-git clone https://github.com/a-b365/bone-analysis.git
-cd bone_analysis
-```
+    ```bash
+    git clone https://github.com/a-b365/bone-analysis.git
+    cd bone_analysis
+    ```
 
-For Windows:
-```powershell
-.\env.ps1
-```
+2. Run the powershell script to add the environment variables:
 
-Manual (cross-platform):
-```bash
-python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
-pip install -r requirements.txt
-```
+    ```powershell
+    .\env.ps1
+    ```
 
+3. Create and activate a virtual environment:
+
+  - On macOS/Linux:
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate
+    ```
+
+  - On Windows:
+    ```powershell
+    .\venv\Scripts\activate
+    ```
+
+4. Install Dependencies
+
+    Run:
+    ```
+    pip install -r requirements.txt
+    ```
 ---
 
-## 🧪 Example Usage
+## Example Usage
 
 ```python
 from segmentation import watershed_segmentation
@@ -99,10 +114,10 @@ from landmark_detection import find_landmarks
 labels = watershed_segmentation(volume_3d)
 
 # Expand mask
-expanded_mask = expand_mask(mask, spacing, expansion=2.0)
+expanded_mask = expand_mask(mask_data, spacing, expansion=2.0)
 
 # Identify landmarks
-medial, lateral = find_landmarks(tibia_3d, spacing)
+medial_landmark, lateral_landmark = find_landmarks(tibia_3d, spacing)
 
 # Visualize 3D
 from mayavi import mlab
@@ -129,16 +144,17 @@ def visualize_segments(labels):
 
 ---
 
-## 🧠 Methodology
+## Methodology
 
 **Preprocessing:**
 - HU thresholding
 - Morphological Operations
 - Binary Hole filling
-- Connected component filtering
+- Gaussian filtering
+- Zoom operations
 
 **Segmentation:**
-- Adaptive thresholding
+- Global thresholding
 - Watershed + cleanup
 
 **Distance Transform Applications:**
@@ -148,31 +164,23 @@ def visualize_segments(labels):
 
 ---
 
-## 🤝 Contributing
+## Usage
 
-1. Fork the repo
-2. Create a branch (`git checkout -b feature/new-algorithm`)
-3. Commit your changes
-4. Push to GitHub
-5. Open a Pull Request
-
----
-
-## 🙏 Acknowledgments
-
-- Nepal Applied Mathematics and Informatics Institute for research (NAAMII)
-- `scikit-image`, `nibabel`, and open-source communities
-- AI tools including ChatGPT, Claude AI, and Perplexity
+- Run the desired Python module directly from the command line.
+- Upload a document image and click **Process**.
+- The app will display one output at a time:
+  - Segmentation: Generates masks for femur and tibia.
+  - Contour Expansion: Produces expanded and randomized contours of the masks.
+  - Landmark Detection: Identifies medial and lateral tibial landmarks.
+  - Plots: Visualizes segmentation, contours, distance maps, and landmarks.
 
 ---
 
-## 🔍 Citation
+## Notes
 
-```bibtex
-@software{medical_image_processing_2024,
-  title={Medical Image Processing: Bone Analysis},
-  author={Amir Bhattarai},
-  year={2024},
-  url={https://github.com/a-b365/bone-analysis.git}
-}
-```
+  - A detailed project report is available in the docs/ folder
+  - Run the Jupyter notebook inside the notebooks/ folder for an interactive walkthrough of the implementation
+  - Visual outputs and intermediate results can be found in the images/ directory.
+
+---
+

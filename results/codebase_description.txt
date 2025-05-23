@@ -5,9 +5,12 @@ This project implements comprehensive image processing techniques for analyzing 
 
 RESULTS FOLDER CONTENTS:
 - 6 .nii files containing processed medical imaging data
-- Original segmentation masks (femur and tibia separated)
+- Original segmentation mask (including femur and tibia separated) 
+  filenames = ["3702_left_knee_mask_final.nii.gz", "3702_left_knee_mask_segmented.nii.gz"]
 - Expanded masks: 2mm and 4mm expansion variants
+  filenames = ["3702_left_knee_expanded_mask_1.nii.gz", "3702_left_knee_expanded_mask_2.nii.gz"]
 - Randomized masks: 20% and 80% randomness levels
+  filenames = ["3702_left_knee_randomized_mask_1.nii.gz", "3702_left_knee_randomized_mask_2.nii.gz"]
 - All masks preserve original metadata for clinical compatibility
 
 COORDINATE DATA:
