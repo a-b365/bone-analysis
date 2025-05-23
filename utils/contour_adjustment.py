@@ -5,8 +5,8 @@ This module provides functionality for expanding and randomizing contours in
 medical image masks using distance transform techniques. It enables uniform
 expansion and controlled randomization for data augmentation purposes.
 
-Author: [Your Name]
-Date: [Current Date]
+Author: Amir Bhattarai
+Date: 2025-05-23
 Version: 1.0
 """
 

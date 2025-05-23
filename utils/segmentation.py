@@ -1,5 +1,5 @@
 """
-Medical Image Segmentation Module
+Segmentation Module
 
 This module provides functionality for segmenting medical images using watershed
 algorithm to separate connected anatomical structures in CT scan data.

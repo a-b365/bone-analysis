@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project applies classical image processing techniques to knee CT scans, focusing on bone segmentation, contour manipulation, and landmark detection. It extracts critical anatomical insights from medical images, specifically targeting femur and tibia structures.
+This project applies image processing techniques to knee CT scans, focusing on bone segmentation, contour manipulation, and landmark detection. It extracts critical anatomical insights from medical images, specifically targeting femur and tibia structures.
 
 ---
 
